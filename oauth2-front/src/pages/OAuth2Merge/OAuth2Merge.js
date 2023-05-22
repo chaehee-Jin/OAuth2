@@ -13,7 +13,6 @@ const OAuth2Merge = () => {
         );
         return response;
       } catch (error) {
-        console.log(error);
         setErrorMsg(error.response.data);
         return error;
       }
@@ -29,7 +28,7 @@ const OAuth2Merge = () => {
   );
   const [password, setPassword] = useState();
   const [errorMsg, setErrorMsg] = useState("");
-  const [searchParams, setSerchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const email = searchParams.get("email");
   const provider = searchParams.get("provider");
 
@@ -44,15 +43,16 @@ const OAuth2Merge = () => {
       provider,
     });
   };
+
   return (
     <div>
       <h1>
-        {email}계정을 {provider}와 통합하는 것에 동의 하십니까?
+        {email}계정을 {provider} 계정과 통합하는 것에 동의 하십니까?
       </h1>
       <input
         type="password"
         onChange={passwordChangeHandle}
-        placeholder="기존의 계정의 비밀번호를 입력하세요"
+        placeholder="기존 계정의 비밀번호를 입력하세요"
       />
       <p>{errorMsg}</p>
       <button onClick={providerMergeSubmitHandle}>동의</button>

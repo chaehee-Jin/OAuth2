@@ -1,6 +1,7 @@
 package com.study.oauth2.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,18 +38,23 @@ public class AuthController {
 		
 		return ResponseEntity.ok(authService.oAuth2Register(oAuth2RegisterReqDto));
 	}
+	
 	@PutMapping("/oauth2/merge")
-	public ResponseEntity<?> providerMerge(@RequestBody OAuth2ProviderMergeReqDto oAuth2ProviderMergeReqDto){
-		
-		if(!authService.checkPassword(oAuth2ProviderMergeReqDto.getEmail(),oAuth2ProviderMergeReqDto.getPassword())) {
+ 	public ResponseEntity<?> providerMerge(@RequestBody OAuth2ProviderMergeReqDto oAuth2ProviderMergeReqDto) {
+ 		
+		if(!authService.checkPassword(oAuth2ProviderMergeReqDto.getEmail(), oAuth2ProviderMergeReqDto.getPassword())) {
 			return ResponseEntity.badRequest().body("비밀번호가 일치하지 않습니다");
 		}
 		
-		
 		return ResponseEntity.ok(authService.oAuth2ProviderMerge(oAuth2ProviderMergeReqDto));
-		
+ 	}
+	
+	@GetMapping("/authenticated")
+	public ResponseEntity<?> authenticated(@RequestHeader(value = "Authorization") String accessToken) {
+		return ResponseEntity.ok(jwtTokenProvider.validateToken(jwtTokenProvider.getToken(accessToken)));
 	}
 }
+
 
 
 
