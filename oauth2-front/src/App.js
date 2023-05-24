@@ -9,6 +9,7 @@ import PostRegister from "./pages/Posts/PostRegister";
 import OAuth2Register from "./pages/Register/OAuth2Register";
 import AuthRoute from "./components/auth/AuthRoute";
 import ForgotPassword from "./pages/Forgot/ForgotPassword";
+import Profile from "./pages/Mypage/Profile";
 
 function App() {
   return (
@@ -29,8 +30,8 @@ function App() {
         />
 
         <Route
-          path="/mypage"
-          element={<AuthRoute path={"/mypage"} element={<Index />} />}
+          path="/mypage/profile"
+          element={<AuthRoute path={"/mypage/profile"} element={<Profile />} />}
         />
         <Route
           path="/post/register"

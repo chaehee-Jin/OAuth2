@@ -20,6 +20,7 @@ public class User {
 	private String password;
 	private String name;
 	private String provider;
+	private String profileImg;
 	
 	private List<Authority> authorities;
 	
@@ -29,6 +30,7 @@ public class User {
 				.email(email)
 				.password(password)
 				.authorities(authorities)
+				.profileImg(profileImg)
 				.build();
 	}
 	
@@ -46,6 +48,7 @@ public class User {
 				.email(email)
 				.name(name)
 				.authorites(builder.toString())
+				.profileImg(profileImg)
 				.build();
 	}
 }
